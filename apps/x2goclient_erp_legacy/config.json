@@ -3,7 +3,7 @@
   "environment": "production",
   
   "process_config": {
-    "executable_path": "C:\\Program Files  (x86)\\x2goclient\\x2goclient.exe",
+    "executable_path": "C:\\Program Files (x86)\\x2goclient\\x2goclient.exe",
     "process_name": "x2goclient.exe",
     "window_title_regex": "X2Go Client",
     "startup_wait_sec": 15,
