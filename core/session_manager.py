@@ -25,7 +25,8 @@ class SessionManager:
     def _load_json(self, path: str) -> dict:
         if not os.path.exists(path):
             raise FileNotFoundError(f"Archivo de configuración no encontrado: {path}")
-        with open(path, 'r', encoding='utf-8') as f:
+        # Usamos utf-8-sig para ignorar el BOM de Windows de forma segura
+        with open(path, 'r', encoding='utf-8-sig') as f:
             return json.load(f)
 
     def start_session(self):
