@@ -1,0 +1,168 @@
+﻿# ==========================================
+# RPA ENTERPRISE AGENT - .gitignore
+# Versión: 1.0 - Estructura definitiva
+# ==========================================
+
+# ------------------------------
+# ENTORNO VIRTUAL PYTHON
+# ------------------------------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.virtualenv/
+
+# ------------------------------
+# BYTECODE COMPILADO
+# ------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+*.exe
+
+# ------------------------------
+# TESTING Y COBERTURA
+# ------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+.hypothesis/
+
+# ------------------------------
+# DATOS DE ENTRADA (NO SUBIR)
+# ------------------------------
+data/input/*.csv
+data/input/*.xlsx
+data/input/*.xls
+data/input/*.json
+entrada/*.csv
+entrada/*.xlsx
+
+# ------------------------------
+# RESULTADOS Y EVIDENCIAS (NO SUBIR)
+# ------------------------------
+data/output/
+data/output/**/*.csv
+data/output/**/*.xlsx
+data/output/**/*.log
+data/output/**/resultado_*.csv
+logs/
+logs/**/*.jsonl
+logs/**/*.txt
+evidencias/
+evidencias/**/*.png
+evidencias/**/*.jpg
+salida/
+salida/**/*.csv
+salida/**/*.jsonl
+salida/**/*.txt
+
+# ------------------------------
+# ARCHIVOS DE EJECUCIÓN TEMPORAL
+# ------------------------------
+*.tmp
+*.temp
+*.cache
+*.bak
+*.backup
+*.swp
+*.swo
+
+# ------------------------------
+# CONFIGURACIÓN LOCAL (SENSIBLE)
+# ------------------------------
+*.env
+.env.*
+.env.local
+.env.production
+.env.development
+secrets/
+secrets.json
+config.local.json
+credentials.json
+*.secret
+*.key
+*.pem
+*.cer
+*.crt
+
+# ------------------------------
+# ARCHIVOS DE PROYECTO IDE
+# ------------------------------
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------
+# ARCHIVOS DE VERIFICACIÓN LOCAL
+# ------------------------------
+SHA256SUMS.txt
+BUILD_VERIFICATION.txt
+checksums.md5
+*.sha256
+
+# ------------------------------
+# EXCEPCIONES: MANTENER ESTRUCTURA DE CARPETAS
+# ------------------------------
+!data/input/.gitkeep
+!data/output/.gitkeep
+!logs/.gitkeep
+!evidencias/.gitkeep
+!salida/.gitkeep
+
+# ==========================================
+# --- EXCEPCIONES IMPORTANTES ---
+# Los siguientes directorios y archivos SÍ deben subirse:
+# ==========================================
+
+# CÓDIGO FUENTE (Siempre subir)
+!core/
+!core/*.py
+!main.py
+
+# CONFIGURACIONES DE APPS (Siempre subir)
+!apps/
+!apps/*/
+!apps/*/config.json
+!apps/*/flow_*.json
+!apps/*/assets/
+!apps/*/assets/*.png
+!apps/*/assets/*.jpg
+!apps/*/assets/*.jpeg
+
+# README Y DOCUMENTACIÓN
+!README.md
+!LICENSE
+!CHANGELOG.md
+!CONTRIBUTING.md
+
+# REQUIREMENTS (Siempre subir)
+!requirements.txt
+!requirements-dev.txt
+!setup.py
+!pyproject.toml
+
+# GITHUB ACTIONS / CI
+!.github/
+!.github/workflows/*.yml
+
+# ==========================================
+# NOTAS IMPORTANTES PARA EL EQUIPO
+# ==========================================
+# 1. Los assets (imágenes de anclaje) DEBEN subirse
+# 2. Los datos de entrada NO deben subirse
+# 3. Los resultados de ejecución NO deben subirse
+# 4. Mantener .gitkeep en carpetas vacías
+# 5. Las configuraciones de apps (JSON) SÍ deben subirse
