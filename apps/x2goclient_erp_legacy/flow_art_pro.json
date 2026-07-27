@@ -32,7 +32,6 @@
       "action_type": "load_data",
       "target_file": "input_file"
     }
-    // ... Aquí se añadirán los pasos de iteración del CSV en el futuro
   ],
   
   "post_conditions": []

@@ -23,6 +23,14 @@ class WindowManager:
                     # Verificamos que la ventana tenga tamaño (no esté oculta)
                     if window.width > 0 and window.height > 0:
                         return window
+                        
+            # MODO DEBUG: Si no la encuentra, imprime qué ventanas hay abiertas
+            self.logger.warning("--- MODO DEBUG: Ventanas visibles detectadas por Windows ---")
+            for window in gw.getAllWindows():
+                if window.title and window.width > 0 and window.height > 0:
+                    self.logger.warning(f"-> Título: '{window.title}' (Tamaño: {window.width}x{window.height})")
+            self.logger.warning("--------------------------------------------------------")            
+        
         except Exception as e:
             self.logger.error(f"Error buscando ventana: {e}")
         return None

@@ -5,7 +5,7 @@
   "process_config": {
     "executable_path": "C:\\Program Files (x86)\\x2goclient\\x2goclient.exe",
     "process_name": "x2goclient.exe",
-    "window_title_regex": "X2Go Client",
+    "window_title_regex": "x2go",
     "startup_wait_sec": 15,
     "max_recovery_retries": 2
   },
