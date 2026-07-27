@@ -1,0 +1,28 @@
+﻿{
+  "app_name": "X2GoClient - ERP Legacy",
+  "environment": "production",
+  
+  "process_config": {
+    "executable_path": "C:\\Program Files (x86)\\x2goclient\\x2goclient.exe",
+    "process_name": "x2goclient.exe",
+    "window_title_regex": "ERP Legacy",
+    "startup_wait_sec": 15,
+    "max_recovery_retries": 2
+  },
+  
+  "vision_config": {
+    "default_confidence": 0.85,
+    "screenshot_scale_factor": 1.0
+  },
+  
+  "global_anchors": {
+    "erp_main_menu_loaded": "apps/x2goclient_erp_legacy/assets/anclaje_menu_principal.png",
+    "system_busy_indicator": "apps/x2goclient_erp_legacy/assets/reloj_arena.png"
+  },
+  
+  "timeouts": {
+    "short_action": 5,
+    "medium_action": 15,
+    "long_action": 30
+  }
+}
