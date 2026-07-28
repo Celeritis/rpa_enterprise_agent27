@@ -1,36 +1,43 @@
 {
   "flow_name": "Actualizacion Articulos Proveedores",
-  "description": "Flujo para actualizar precios y proveedores en el ERP Legacy",
+  "description": "Conexion a X2Go y ERP Legacy",
   "input_file": "data/input/actualizar-art-pro.csv",
   "output_file": "data/output/resultados_actualizacion.csv",
   
-  "pre_conditions": [
-    {
-      "action": "verify_anchor",
-      "target": "erp_main_menu_loaded",
-      "timeout_key": "medium_action"
-    }
-  ],
+  "pre_conditions": [],
   
   "steps": [
     {
       "id": 1,
-      "description": "Navegar a modulo de Articulos",
+      "description": "Click en sesion Distrituc",
       "action_type": "click_image",
-      "target_image": "apps/x2goclient_erp_legacy/assets/btn_modulo_articulos.png"
+      "target_image": "apps/x2goclient_erp_legacy/assets/btn_sesion_distrituc.png"
     },
     {
       "id": 2,
-      "description": "Esperar que la pantalla de articulos cargue",
+      "description": "Esperar pantalla de logueo de X2Go",
       "action_type": "wait_for_image",
-      "target_image": "apps/x2goclient_erp_legacy/assets/titulo_pantalla_articulos.png",
+      "target_image": "apps/x2goclient_erp_legacy/assets/anclaje_logueo_distrituc.png",
       "timeout_key": "medium_action"
     },
     {
       "id": 3,
-      "description": "Cargar el archivo CSV en memoria local (Inicia bucle de datos)",
-      "action_type": "load_data",
-      "target_file": "input_file"
+      "description": "Escribir contraseña desde variable de entorno",
+      "action_type": "type_text",
+      "text_source": "env:X2GO_PASSWORD"
+    },
+    {
+      "id": 4,
+      "description": "Presionar Enter para ingresar",
+      "action_type": "press_key",
+      "key": "enter"
+    },
+    {
+      "id": 5,
+      "description": "Esperar que el ERP Legacy cargue completamente",
+      "action_type": "wait_for_image",
+      "target_image": "apps/x2goclient_erp_legacy/assets/anclaje_erp_cargado.png",
+      "timeout_key": "long_action"
     }
   ],
   

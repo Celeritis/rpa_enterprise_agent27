@@ -4,6 +4,7 @@ import os
 import logging
 import time
 import pyautogui
+import pyperclip
 from core.vision_engine import VisionEngine
 from core.dynamic_waiter import DynamicWaiter, TimeoutException
 from core.window_manager import WindowManager
@@ -82,7 +83,6 @@ class SessionManager:
             if coords:
                 self.logger.debug(f"Imagen encontrada en {coords}. Haciendo click.")
                 pyautogui.click(coords)
-                # Espera micro después de click para que el UI reaccione
                 time.sleep(0.5) 
             else:
                 raise TimeoutException(f"No se encontró la imagen para click: {target}")
@@ -93,11 +93,37 @@ class SessionManager:
             timeout = self.config.get("timeouts", {}).get(timeout_key, 10)
             self.waiter.wait_for_image(target, timeout=timeout, confidence=confidence)
             
+        elif action == "type_text":
+            text_source = step.get("text_source", "")
+            text_to_type = ""
+            
+            # Si el texto viene de una variable de entorno (ej. "env:X2GO_PASS")
+            if text_source.startswith("env:"):
+                env_var = text_source.split("env:")[1]
+                text_to_type = os.environ.get(env_var, "")
+                if not text_to_type:
+                    raise ValueError(f"Variable de entorno '{env_var}' no encontrada.")
+                self.logger.info(f"Ingresando texto desde variable de entorno: {env_var}")
+            else:
+                text_to_type = text_source
+                
+            # Usamos el portapapeles para pegar la contraseña (más rápido y falla menos en X2Go)
+            pyperclip.copy(text_to_type)
+            time.sleep(0.2)
+            pyautogui.hotkey('ctrl', 'v')
+            time.sleep(0.2)
+            
+        elif action == "press_key":
+            key = step.get("key", "enter")
+            self.logger.info(f"Presionando tecla: {key}")
+            pyautogui.press(key)
+            time.sleep(0.5)
+            
         elif action == "load_data":
             file_key = step.get("target_file")
             file_path = self.config.get("flow_data", {}).get(file_key) or step.get("target_file")
             self.logger.info(f"Cargando datos desde: {file_path}")
-            # TODO: Implementar lectura de CSV y preparar iteración de datos
+            # TODO: Implementar lectura de CSV
             
         else:
             self.logger.warning(f"Acción no reconocida: {action}")
